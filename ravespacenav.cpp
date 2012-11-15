@@ -56,6 +56,16 @@ class SpaceNav : public ModuleBase
                 _running=false;
             }
             else _running=true;
+            _state.x=0;
+            _state.y=0;
+            _state.z=0;
+            _state.rx=0;
+            _state.ry=0;
+            _state.rz=0;
+            _state.b0=0;
+            _state.b1=0;
+            _button.press=0;
+            _button.bnum=0;
         }
 
         virtual ~SpaceNav() {
