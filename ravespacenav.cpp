@@ -98,6 +98,12 @@ class SpaceNav : public ModuleBase
             return true;
         }
 
+        
+        /**
+         * Process spnav events that have elapsed.
+         * Events will accumulate from the spacenavigator that must be
+         * incrementally processed to determine the current state.
+         */
         virtual bool SimulationStep(dReal elapsedTime) {
             spnav_event sev;
             if (_running){
@@ -117,6 +123,12 @@ class SpaceNav : public ModuleBase
             }
             return true;
         };
+
+        const spnav_state& GetState() const {
+            return _state;
+        }
+
+        
     protected:
         void UpdateState(){
             _state.x=_motion.x;
@@ -136,9 +148,12 @@ class SpaceNav : public ModuleBase
 
         }
     private:
+
         bool _running;
         spnav_event_motion _motion;
         spnav_event_button _button;
+
+        /** Overall internal state of spacenav */
         spnav_state _state;
 };
 
